@@ -1,0 +1,238 @@
+/* General styles */
+body {
+  padding-top: 10vh; /* Space from the top based on viewport height */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  box-sizing: border-box; /* Ensure padding/margin doesn't overflow */
+}
+
+.feed-container {
+  padding-top: 15vh; /* Dynamic top padding based on viewport height */
+  padding-bottom: 10vh; /* Space at the bottom to ensure it's not hidden behind any footer */
+  padding-left:4vw; /* Adds responsive horizontal padding */
+  padding-right: 5vw; /* Adds responsive horizontal padding */
+  max-width: 100%; /* Ensure it fits within the screen width */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 20px; /* Adjust top padding for smaller screens */
+  }
+
+  .feed-container {
+    padding-top: 10vh; /* Reduced padding for smaller screens */
+    padding-left: 2vw; /* Reduce padding for smaller screens */
+    padding-right: 2vw; /* Reduce padding for smaller screens */
+  }
+}
+
+/* Adjustments for extra-large screens */
+@media screen and (min-width: 1200px) {
+  body {
+    padding-top: 5vh; /* Less padding for larger screens */
+  }
+
+  .feed-container {
+    padding-top: 10vh; /* More space on large screens */
+    padding-left: 8vw; /* More horizontal padding for larger screens */
+    padding-right: 8vw; /* More horizontal padding for larger screens */
+  }
+}
+
+
+.title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  background-color: #15346d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.title1 {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 30px;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.feed-content {
+  margin-top: 60px;
+}
+
+
+/* Post styles */
+.post {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;  /* Ensures text breaks on long words */
+  word-wrap: break-word; /* Older syntax for word breaking */
+  hyphens: auto;  /* Allows for hyphenation where appropriate */
+}
+
+.post-header h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.post-header,
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.post-text {
+  margin-top: 10px;
+  white-space: normal;
+  word-break: break-all; /* Force break inside long words */
+  overflow-wrap: break-word; /* Ensure long words can wrap */
+  hyphens: auto; /* Enable hyphenation where needed */
+  width: 100%; /* Make sure the text container has a width */
+  max-width: 90%; /* Ensure the text container does not exceed the container's width */
+}
+
+.like-button,
+.comment-button {
+  padding: 6px 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display:block
+}
+
+.like-button:hover,
+.comment-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-button {
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  background-color: #e60000;
+  transform: scale(1.05);
+}
+
+.delete-button:active {
+  background-color: #b30000;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.post.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 430px) {
+  .post {
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+}
+
+.search-results {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  max-width: 450px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.user-item {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.user-item:hover {
+  background-color: #f0f0f0;
+}
+
+.user-item:last-child {
+  border-bottom: none;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #4a90e2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
