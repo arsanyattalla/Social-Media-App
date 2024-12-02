@@ -23,17 +23,23 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
+const sessionId = require('crypto').randomBytes(16).toString('hex');  // Generate a unique session ID
 app.use(session({
-  secret: 'yourSecretKey', 
+  secret: 'yourSecretKey',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: dbURI, 
-    collectionName: 'sessions'
+    mongoUrl: dbURI,
+    collectionName: 'sessions',
+    ttl: 14 * 24 * 60 * 60,  // Optional: TTL for session
   }),
-  cookie: { secure: false } 
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24,
+    sessionID: sessionId,  // Assign the unique session ID to the cookie
+  },
 }));
-
 app.use(express.json());
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })

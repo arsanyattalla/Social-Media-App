@@ -15,9 +15,7 @@ function SearchBar() {
 
     navigate(`/profile?id=${userId}`);
 };
-  const searches  = useLocation();
-  const queryParams = new URLSearchParams(searches.search);
-  const id = queryParams.get("id"); 
+  
   const handleSearchChange = async (e) => {
     const searchQuery = e.target.value;
     setQuery(searchQuery);
@@ -56,7 +54,17 @@ function SearchBar() {
       console.error("Logout failed:", error);
     }
   };
+  const checkSession = async () => {
+    try {
+        const response = await axios.get(apiURL+"/api/session", { withCredentials: true });
+        if (response.data.user.id) {
 
+            navigate(`/profile?id=${response.data.user.id}`);
+        }
+    } catch (error) {
+        console.error("Session check failed:", error);
+    }
+};
   useEffect(() => {
     if (search) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -71,7 +79,7 @@ function SearchBar() {
   return (
     <div className="navbar" ref={searchRef}>
       {/* Home Icon */}
-      <div className="icon" onClick={() => navigate("/")}>
+      <div className="icon" onClick={() => navigate(`/feed`)}>
         <FontAwesomeIcon icon={faHome} />
       </div>
 
@@ -88,7 +96,7 @@ function SearchBar() {
       </div>
 
       {/* Profile Icon */}
-      <div className="icon" onClick={() => handleUserClick(id)}>
+      <div className="icon" onClick={() => checkSession()}>
         <FontAwesomeIcon icon={faUser} />
       </div>
 

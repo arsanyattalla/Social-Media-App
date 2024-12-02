@@ -20,7 +20,33 @@ body {
   body {
     padding-top: 20px; /* Adjust top padding for smaller screens */
   }
-
+  .post {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .post.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+    animation: slideIn 0.5s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .post.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
   .feed-container {
     padding-top: 10vh; /* Reduced padding for smaller screens */
     padding-left: 2vw; /* Reduce padding for smaller screens */
@@ -81,7 +107,7 @@ body {
 
 /* Post styles */
 .post {
-  background-color: #f9f9f9;
+  background-color: #e6e4e4;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -95,7 +121,7 @@ body {
 
 .post-header h3 {
   font-size: 18px;
-  color: #333;
+  color: #000000;
 }
 
 .post-date {
@@ -111,22 +137,35 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
-
+.comment{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  box-sizing: border-box;
+}
 .post-text {
   margin-top: 10px;
   white-space: normal;
-  word-break: break-all; /* Force break inside long words */
   overflow-wrap: break-word; /* Ensure long words can wrap */
   hyphens: auto; /* Enable hyphenation where needed */
   width: 100%; /* Make sure the text container has a width */
   max-width: 90%; /* Ensure the text container does not exceed the container's width */
 }
-
+.likes-tooltip {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 9px;
+  color: #333;
+}
 .like-button,
 .comment-button {
   padding: 6px 12px;
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 10px;
   background-color: #3498db;
   color: white;
   border: none;
@@ -134,7 +173,7 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s;
-  display:block
+  display:flex
 }
 
 .like-button:hover,

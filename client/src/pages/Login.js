@@ -24,9 +24,12 @@ function Login() {
 
             if (response.status === 200) {
                 alert(response.data.message);
+                console.log(response)
+
                 user = response.data.user._id
-                setUserId(response.data.user)
-                navigate(`/feed?id=${response.data.user._id}`);
+                console.log(response.data.user._id)
+                setUserId(response.data.user._id)
+                navigate(`/feed`);
             }
         } catch (error) {
             console.error("Error fetching user", error.response ? error.response.data : error);
@@ -39,7 +42,7 @@ function Login() {
             const response = await axios.get(apiURL+"/api/session", { withCredentials: true });
             if (response.data.loggedIn) {
 
-                navigate(`/feed?id=${response.data.user._id}`);
+                navigate(`/feed`);
             }
         } catch (error) {
             console.error("Session check failed:", error);

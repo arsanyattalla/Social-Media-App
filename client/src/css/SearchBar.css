@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #fff;
+    background-color: #0b1b33;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
@@ -16,7 +16,7 @@
   .icon {
     font-size: 20px;
     cursor: pointer;
-    color: #555;
+    color: #a1aeb1;
     padding: 10px;
   }
   
