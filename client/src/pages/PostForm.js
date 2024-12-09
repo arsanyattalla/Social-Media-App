@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import "../css/PostForm.css"; 
 import apiURL from "../config"
+import post from '../components/paper-plane.png'
 
 function PostForm({ onPostCreated }) {
   const [content, setContent] = useState('');
@@ -33,6 +34,7 @@ function PostForm({ onPostCreated }) {
 
   return (
     <form onSubmit={handlePostSubmit} className="post-form">
+    <div className="textarea-wrapper">
       <textarea
         value={content}
         onChange={handlePostChange}
@@ -40,9 +42,12 @@ function PostForm({ onPostCreated }) {
         placeholder="What's on your mind?"
         required
         className="post-textarea"
-      ></textarea>
-      <button type="submit" className="post-button">Post</button>
-    </form>
+      />
+      <button type="submit" className="post-button">
+        <img src={post} alt="Submit Post" />
+      </button>
+    </div>
+  </form>
   );
 }
 

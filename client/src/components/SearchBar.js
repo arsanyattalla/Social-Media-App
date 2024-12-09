@@ -5,11 +5,15 @@ import { faSearch, faSignOutAlt, faHome, faUser } from "@fortawesome/free-solid-
 import { useNavigate, useParams, useLocation} from "react-router-dom";
 import "../../src/css/SearchBar.css";
 import apiURL from "../config";
+import image from '../components/Untitleddesign.png'
+import { checkboxClasses } from "@mui/material";
 function SearchBar() {
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState(false);
+  const [username,setUsername] = useState(null)
   const searchRef = useRef(null);
+  const [profile,setProfile] = useState(false)
   const navigate = useNavigate();
   const handleUserClick = (userId) => {
 
@@ -43,6 +47,11 @@ function SearchBar() {
     }
   };
 
+  const handleProfileClick= async ()=>{
+    setProfile(true)
+    await checkSession()
+  }
+
   const handleLogout = async () => {
     try {
       const response = await axios.post(apiURL+"/api/logout", {}, { withCredentials: true });
@@ -58,14 +67,19 @@ function SearchBar() {
     try {
         const response = await axios.get(apiURL+"/api/session", { withCredentials: true });
         if (response.data.user.id) {
-
+            if(profile){
             navigate(`/profile?id=${response.data.user.id}`);
+            setProfile(false)
+            }
+            console.log(response.data.user)
+            setUsername(response.data.user.username)
         }
     } catch (error) {
         console.error("Session check failed:", error);
     }
 };
   useEffect(() => {
+    checkSession()
     if (search) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -80,7 +94,7 @@ function SearchBar() {
     <div className="navbar" ref={searchRef}>
       {/* Home Icon */}
       <div className="icon" onClick={() => navigate(`/feed`)}>
-        <FontAwesomeIcon icon={faHome} />
+        <img src={image} />
       </div>
 
       {/* Search Input */}
@@ -96,8 +110,9 @@ function SearchBar() {
       </div>
 
       {/* Profile Icon */}
-      <div className="icon" onClick={() => checkSession()}>
+      <div className="icon" onClick={() => handleProfileClick()}>
         <FontAwesomeIcon icon={faUser} />
+        <p>{username}</p>
       </div>
 
       {/* Logout Icon */}

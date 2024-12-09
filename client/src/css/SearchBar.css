@@ -19,9 +19,22 @@
     color: #a1aeb1;
     padding: 10px;
   }
-  
+  .icon p {
+    font-size: 9px;
+    margin: -1px;
+  }
+  .icon img {
+    width: 40px; /* Adjust the size of the icon */
+    height: 40px;
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+    opacity: 0.8; /* Adds transparency */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  }
   .icon:hover {
     color: #007bbf;
+    transform: scale(1.2);
+
   }
   
   .search-container {

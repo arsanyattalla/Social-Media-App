@@ -45,7 +45,6 @@ function Feed() {
         { postId },
         { withCredentials: true }
       );
-      console.log(response.data);
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post._id === postId
@@ -71,7 +70,6 @@ function Feed() {
       const response = await axios.get(apiURL + "/api/session", {
         withCredentials: true,
       });
-      console.log(response);
       setLoggedIn(response.data.loggedIn);
       setLoggedinUserId(response.data.user.id);
       if (response.data.loggedIn) {
@@ -82,7 +80,6 @@ function Feed() {
       console.error("Session check failed:", error);
     } finally {
       setLoading(false);
-      console.log(loggedIn);
     }
   }, []);
 
@@ -100,10 +97,18 @@ function Feed() {
     }
   }, [loggedIn]);
   useEffect(() => {
+    let timeoutId;
+  
     if (posts.length > 0) {
-      fetchLikes();
+      timeoutId = setTimeout(() => {
+        fetchLikes();
+      }, 500); 
     }
+  
+    return () => clearTimeout(timeoutId); // Cleanup timeout on unmount or before rerun
   }, [posts, fetchLikes]);
+  
+  
   const handlePostCreated = async (newPost) => {
     try {
       setPosts([newPost, ...posts]);

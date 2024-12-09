@@ -8,17 +8,21 @@
     align-items: center; /* Centers content horizontally */
 }
 
+.textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .post-textarea {
     width: 100%;
-    height: auto;
-    padding: 12px;
+    height: 50px;
+    padding: 12px 50px 12px 12px; /* Space for the button inside */
     border: 2px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
     font-family: 'Arial', sans-serif;
     transition: border-color 0.3s;
     resize: none;
-    margin-top: 100px;
 }
 
 .post-textarea:focus {
@@ -27,21 +31,25 @@
 }
 
 .post-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: #1e3972;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+
+.post-button img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }
 
 .post-button:hover {
-    background-color: #020013;
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .post-button:active {

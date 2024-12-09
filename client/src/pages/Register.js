@@ -59,8 +59,8 @@ function Register() {
 
   return (
     <div className="login-page">
+              <h1 className="logo">Momentia </h1>
       <div className="login-box">
-        <h1 className="logo">Momentia </h1>
         <form className="login-form" onSubmit={registerUser}>
         <input
             type="text"

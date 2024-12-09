@@ -12,45 +12,126 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #000000;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000000;
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  font-family: 'Neue Helvetica';
+}
+
+/* Add smooth gradient animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Login Page */
 .login-page {
   display: flex;
   flex-direction: column;
+  justify-content: center;  /* Align content vertically */
   align-items: center;
+  opacity: 0; /* Initially hidden */
+  animation: showPage 1s 2s forwards; /* Fade in after logo animation */
+  position: relative; /* Fix position of elements */
+  margin-top: 0; /* Adjust to remove extra space */
+}
+
+/* Fade in the page */
+@keyframes showPage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Logo Container */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh; /* Adjust the height of the logo container */
+  animation: slideInLogo 1s ease-out forwards;
+}
+
+/* Slide in the logo container */
+@keyframes slideInLogo {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Logo letter by letter animation */
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-weight: 500;
+  font-size: 50px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin: 70px; /* Remove extra margin */
+}
+
+.logo-letter {
+  opacity: 0; /* Initially invisible */
+  transform: translateY(20px); /* Move the letters below */
+  animation: drawLetter 0.5s forwards;
+  font-family: 'Pacifico', cursive;
+
+}
+
+/* Draw each letter */
+@keyframes drawLetter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .login-box {
   width: 100%;
   max-width: 350px;
   padding: 40px;
-  margin: 20px;
+  margin-top: -60px; 
   background-color: #000000;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  animation: slideIn 0.6s ease-out;
+  opacity: 0;
+  animation: slideIn 0.6s ease-out 2.5s forwards; 
 }
 
+/* Slide in the login box */
 @keyframes slideIn {
   from {
-      opacity: 0;
-      transform: translateY(-20px);
+    opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
-}
-
-.logo {
-  font-family: 'Pacifico', cursive; /* or 'Dancing Script', cursive */
-    font-weight: 500;
-    font-size: 35px; /* Adjust size as needed */
-    color: #ffffff; 
-  margin-bottom: 20px;
 }
 
 .login-form {
@@ -108,7 +189,6 @@ body {
   margin: 0 10px;
 }
 
-
 .fb-login:hover {
   background-color: #31456e;
   transform: translateY(-2px);
@@ -143,41 +223,4 @@ body {
 
 .signup-box a:hover {
   color: #007bb5;
-}
-/* Set background image for the whole page */
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #000000;
-  background-size: 400% 400%;
-  animation: gradientBackground 15s ease infinite;
-  font-family: 'Neue Helvetica';
-}
-
-/* Add smooth gradient animation */
-@keyframes gradientBackground {
-  0% {
-      background-position: 0% 50%;
-  }
-  50% {
-      background-position: 100% 50%;
-  }
-  100% {
-      background-position: 0% 50%;
-  }
-}
-
-.homepage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.content {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin-top: 20px;
 }
